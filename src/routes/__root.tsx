@@ -77,14 +77,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "Caesar Cipher Lab — Encrypt & Decrypt Text Online" },
+      { name: "description", content: "Caesar Cipher Lab: a red-and-black cybersecurity console to encrypt and decrypt messages with the classical Caesar shift cipher, live stats and alphabet visualization." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Caesar Cipher Lab — Encrypt & Decrypt Text Online" },
+      { property: "og:description", content: "Caesar Cipher Lab: a red-and-black cybersecurity console to encrypt and decrypt messages with the classical Caesar shift cipher, live stats and alphabet visualization." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Caesar Cipher Lab — Encrypt & Decrypt Text Online" },
+      { name: "twitter:description", content: "Caesar Cipher Lab: a red-and-black cybersecurity console to encrypt and decrypt messages with the classical Caesar shift cipher, live stats and alphabet visualization." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dabad13f41835ac1e215d123d26e23fd/id-preview-c7d6259c--72b7ce92-4a4b-4efe-9bc8-98eef2d6ef37.lovable.app-1786939760046.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/dabad13f41835ac1e215d123d26e23fd/id-preview-c7d6259c--72b7ce92-4a4b-4efe-9bc8-98eef2d6ef37.lovable.app-1786939760046.png" },
     ],
     links: [
       {
