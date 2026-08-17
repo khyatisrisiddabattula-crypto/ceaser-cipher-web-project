@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Caesar Cipher Lab — Encrypt & Decrypt Text Online</title>
+<meta name="description" content="Caesar Cipher Lab: a red-and-black cybersecurity console to encrypt and decrypt messages with the classical Caesar shift cipher, live stats and alphabet visualization." />
+<meta property="og:title" content="Caesar Cipher Lab — Encrypt & Decrypt Text" />
+<meta property="og:description" content="Classical cryptography console for Caesar cipher encryption, decryption and alphabet shift visualization." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="bg-fx" id="bgfx" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="brand">
+      <span class="lock" aria-hidden="true">&#128274;</span>
+      <div>
+        <h1>CAESAR CIPHER</h1>
+        <p>Classical Cryptography &bull; Encryption &amp; Decryption</p>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#encrypt">Encrypt</a>
+      <a href="#decrypt">Decrypt</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container">
+      <p class="eyebrow">Secure Console &bull; v1.0</p>
+      <h2>CAESAR CIPHER</h2>
+      <p class="lede">"Secure your message with the power of classical cryptography."</p>
+      <p class="desc">The Caesar Cipher is a substitution cipher in which every letter of the plaintext is
+        shifted by a fixed number of positions in the alphabet. With a shift of 3, <b>A</b> becomes <b>D</b>,
+        <b>B</b> becomes <b>E</b>, and the alphabet wraps around from <b>Z</b> back to <b>A</b>.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#encrypt">Start Encrypting</a>
+        <a class="btn btn-ghost" href="#how">Learn More</a>
+      </div>
+    </div>
+    <div class="container" style="margin-top:54px"><div class="rule"></div></div>
+  </section>
+
+  <!-- CONSOLE -->
+  <section id="encrypt">
+    <div class="container">
+      <p class="eyebrow">Cipher Terminal</p>
+      <h2 class="section-title">Encryption &amp; Decryption Console</h2>
+      <p class="section-sub">Type a message, choose a shift value from 0 to 25, then encrypt or decrypt.
+        Letters keep their case; numbers, spaces and punctuation are never modified.</p>
+
+      <div class="console">
+        <div class="card reveal">
+          <label for="input">Input Message</label>
+          <textarea id="input" placeholder="Enter your message here..." aria-describedby="stats-help" spellcheck="false"></textarea>
+
+          <div style="margin-top:18px">
+            <label for="shift">Shift Value</label>
+            <div class="shift-row">
+              <button class="btn step" id="dec" type="button" aria-label="Decrease shift value">&minus;</button>
+              <input id="shift" type="number" min="0" max="25" step="1" value="3" aria-label="Shift value between 0 and 25" />
+              <button class="btn step" id="inc" type="button" aria-label="Increase shift value">+</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="encrypt-btn" type="button">&#128274; Encrypt</button>
+            <button class="btn btn-ghost" id="decrypt-btn" type="button">&#128275; Decrypt</button>
+          </div>
+        </div>
+
+        <div class="card reveal" id="decrypt">
+          <label for="output">Output Message</label>
+          <textarea id="output" readonly placeholder="Result will appear here..." aria-live="polite" spellcheck="false"></textarea>
+          <div class="actions">
+            <button class="btn btn-ghost btn-sm" id="copy-btn" type="button">Copy Result</button>
+            <button class="btn btn-ghost btn-sm" id="clear-btn" type="button">Clear</button>
+          </div>
+          <p id="stats-help" class="section-sub" style="margin:16px 0 0;font-size:.85rem">
+            Statistics below update live as you type.</p>
+        </div>
+      </div>
+
+      <!-- LIVE STATS -->
+      <div class="grid grid-4" style="margin-top:22px">
+        <div class="card stat reveal"><b id="st-chars">0</b><span>Characters</span></div>
+        <div class="card stat reveal"><b id="st-letters">0</b><span>Letters</span></div>
+        <div class="card stat reveal"><b id="st-numbers">0</b><span>Numbers</span></div>
+        <div class="card stat reveal"><b id="st-spaces">0</b><span>Spaces</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALPHABET -->
+  <section>
+    <div class="container">
+      <p class="eyebrow">Mapping Matrix</p>
+      <h2 class="section-title">Alphabet Shift</h2>
+      <p class="section-sub">Current shift: <b id="shift-echo">3</b> &mdash; each original letter maps to the
+        letter directly below it.</p>
+      <div class="card reveal">
+        <p class="alpha-label">Original</p>
+        <div class="alpha" id="alpha-orig" aria-label="Original alphabet"></div>
+        <p class="alpha-label" style="margin-top:22px">Shifted</p>
+        <div class="alpha shifted" id="alpha-shift" aria-label="Shifted alphabet"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <p class="eyebrow">Process</p>
+      <h2 class="section-title">How Caesar Cipher Works</h2>
+      <div class="grid grid-3">
+        <div class="card step-card reveal"><b>01</b><h3>Enter Message</h3><p>Enter the text you want to encrypt.</p></div>
+        <div class="card step-card reveal"><b>02</b><h3>Choose Shift</h3><p>Select a shift value from 0&ndash;25.</p></div>
+        <div class="card step-card reveal"><b>03</b><h3>Encrypt / Decrypt</h3><p>The algorithm shifts each alphabetic character through the alphabet.</p></div>
+      </div>
+      <div class="chain" aria-label="Example shift chain A to B to C to D">
+        <b>A</b><i>&rarr;</i><b>B</b><i>&rarr;</i><b>C</b><i>&rarr;</i><b>D</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECURITY NOTE -->
+  <section>
+    <div class="container">
+      <div class="card warn reveal">
+        <h3>&#9888; Cryptographic Note</h3>
+        <p>The Caesar Cipher is a historical classical cipher and is <b>NOT</b> considered secure for modern
+          confidential communication. There are only 26 possible shifts, so an attacker can break any message
+          instantly by brute-forcing every key.</p>
+        <p>"Use Caesar Cipher for educational purposes and learning the fundamentals of cryptography."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="eyebrow">Reference</p>
+      <h2 class="section-title">About Caesar Cipher</h2>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+        <div class="card reveal">
+          <ul class="about-list">
+            <li><strong>What it is:</strong> a monoalphabetic substitution cipher where each letter is replaced by another letter a fixed number of positions away.</li>
+            <li><strong>History:</strong> used by Julius Caesar around 58 BC to protect military correspondence, making it one of the earliest recorded encryption schemes.</li>
+            <li><strong>Encryption:</strong> <code>C = (P + K) mod 26</code> &mdash; shift each letter forward by the key.</li>
+            <li><strong>Decryption:</strong> <code>P = (C &minus; K + 26) mod 26</code> &mdash; shift each letter backward by the same key.</li>
+            <li><strong>Vulnerability:</strong> only 25 useful keys exist, so brute force and letter-frequency analysis break it in milliseconds.</li>
+          </ul>
+        </div>
+        <div class="card reveal">
+          <h3 style="margin:0 0 8px;letter-spacing:.16em;text-transform:uppercase;font-size:1rem">Security Level</h3>
+          <p style="color:var(--muted);margin:0">Assessed against modern cryptographic standards.</p>
+          <div class="level">
+            <div class="bar"><i></i></div>
+            <small>Very Low &mdash; Educational Only</small>
+          </div>
+          <div class="tags">
+            <span>Brute-force: 26 keys</span><span>No key exchange</span><span>Frequency analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <h3>Caesar Cipher Lab</h3>
+    <p>Built for learning the fundamentals of classical cryptography.</p>
+    <div class="tags">
+      <span>Encryption</span><span>Decryption</span><span>Cryptography</span><span>Cybersecurity</span>
+    </div>
+    <p class="copy">&copy; <span id="year"></span> Caesar Cipher Lab &bull; Educational project</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
